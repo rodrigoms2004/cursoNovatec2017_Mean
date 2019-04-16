@@ -1,0 +1,46 @@
+<!-- public/app/dashboard.html -->
+
+<div class="row">
+  <div class="col-md-12">
+
+    <button
+      ui-sref="app.product({ productId: null })"
+      class="btn btn-primary">
+      + Novo
+    </button>
+
+    <p class="alert alert-{{ vm.type }}" ng-if="vm.message">
+      {{ vm.message }}
+    </p>
+
+    <product-table data="vm.products" ng-if="vm.products"></product-table>
+
+    <div ng-if="false">{{ vm.if = 2 }}</div>
+    <div ng-show="false">{{ vm.if = 3 }}</div>
+
+    vm.if: {{ vm.if }}
+    vm.show: {{ vm.show }}
+
+  <p>
+    <b>Total:</b> {{ vm.products|sum:'price'|currency: 'R$ ' }}
+  </p>
+  </div>
+</div>
+
+<div class="row">
+
+<!--
+<pre>
+{{ vm.products|json }}
+</pre>
+-->
+<!--
+<button
+  class="btn btn-danger"
+  ng-click="vm.products.push({ name: 'Condicionador', _id: 12})">
+  Click-me!
+</button>
+
+<h1>{{ count }}</h1>
+<h1>{{ vm.count }}</h1>
+-->

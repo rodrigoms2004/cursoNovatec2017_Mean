@@ -1,0 +1,34 @@
+<!-- public/app/views/product.table.html -->
+
+
+<div class="table-responsive">
+  <table class="table table-hower table-striped">
+    <tr>
+      <th>_id</th>
+      <th>Name</th>
+      <th>Preço</th>
+      <th>Avaliação</th>
+      <th>Ações</th>
+    </tr>
+    <tr ng-repeat="item in vm.products">
+      <td>{{ item._id }}</td>
+      <td>{{ item.name|miguxes }}</td>
+      <td>{{ item.price|currency:'R$ ' }}</td>
+      <td>
+        <novatec-rating value="{{ item.rating }}"></novatec-rating>
+      </td>
+      <td>
+        <button
+          ui-sref="app.product({ productId: item._id })"
+          class="btn btn-default btn-xs">
+          editar
+        </button>
+        <button
+          ng-click="vm.remove(item._id)"
+          class="btn btn-danger btn-xs">
+          excluir
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,105 @@
+> use curso-sexta
+switched to db curso-sexta
+> db
+curso-sexta
+> show collections
+> db.products.insert({ name: 'Shampoo 1L', price: 99.90, images: [{url: '.jpg'}] })
+WriteResult({ "nInserted" : 1 })
+> show collections
+products
+> db.products.find()
+{ "_id" : ObjectId("599836d83a1bfd26925cf6b7"), "name" : "Shampoo 1L", "price" : 99.9, "images" : [ { "url" : ".jpg" } ] }
+
+> new Date()
+ISODate("2017-08-19T13:05:36.139Z")
+// pega o timestamp de criação do registro
+> ObjectId("599836d83a1bfd26925cf6b7").getTimestamp()
+ISODate("2017-08-19T13:02:16Z")
+
+// Select name from table
+> db.products.find({}, {_id: 0, name: 1})
+{ "name" : "Shampoo 1L" }
+// Select * from table
+> db.products.find({}, {name: 1})
+{ "_id" : ObjectId("599836d83a1bfd26925cf6b7"), "name" : "Shampoo 1L" }
+
+// Inserindo mais registros
+> db.products.insert({ name: 'Condicionador 500ml', price: 129.9 })
+WriteResult({ "nInserted" : 1 })
+> db.products.insert({ name: 'Perfume Carolina Herrera', price: 1200.5 })
+WriteResult({ "nInserted" : 1 })
+> db.products.insert({ name: 'Esmalte Juliana Paes', price: 3.9 })
+WriteResult({ "nInserted" : 1 })
+
+// buscando
+> db.products.find()
+{ "_id" : ObjectId("599836d83a1bfd26925cf6b7"), "name" : "Shampoo 1L", "price" : 99.9, "images" : [ { "url" : ".jpg" } ] }
+{ "_id" : ObjectId("5998389a3a1bfd26925cf6b8"), "name" : "Condicionador 500ml", "price" : 129.9 }
+{ "_id" : ObjectId("599838be3a1bfd26925cf6b9"), "name" : "Perfume Carolina Herrera", "price" : 1200.5 }
+{ "_id" : ObjectId("599838d03a1bfd26925cf6ba"), "name" : "Esmalte Juliana Paes", "price" : 3.9 }
+
+// buscando somente pelo nome (0 = não mostrar, 1 = mostrar)
+> db.products.find({}, { _id: 0, name: 1})
+{ "name" : "Shampoo 1L" }
+{ "name" : "Condicionador 500ml" }
+{ "name" : "Perfume Carolina Herrera" }
+{ "name" : "Esmalte Juliana Paes" }
+
+// Buscando um produto
+> db.products.find({ name: 'Shampoo 1L' })
+{ "_id" : ObjectId("599836d83a1bfd26925cf6b7"), "name" : "Shampoo 1L", "price" : 99.9, "images" : [ { "url" : ".jpg" } ] }
+
+// Usando regex
+> db.products.find({ name: /[0-9]/ })
+{ "_id" : ObjectId("599836d83a1bfd26925cf6b7"), "name" : "Shampoo 1L", "price" : 99.9, "images" : [ { "url" : ".jpg" } ] }
+{ "_id" : ObjectId("5998389a3a1bfd26925cf6b8"), "name" : "Condicionador 500ml", "price" : 129.9 }
+
+// Removendo
+db.products.remove({_id: ObjectId("599842e0101dae47c8138c41") })
+
+// ordenação
+> db.products.find({}).sort({ name: 1 })
+{ "_id" : ObjectId("599842fc101dae47c8138c42"), "name" : "Condicionador 500ml", "price" : 129.9 }
+{ "_id" : ObjectId("5998430d101dae47c8138c44"), "name" : "Esmalte Juliana Paes", "price" : 3.9 }
+{ "_id" : ObjectId("59984305101dae47c8138c43"), "name" : "Perfume Carolina Herrera", "price" : 1200.5 }
+{ "_id" : ObjectId("59984287511b2809d34f4e33"), "name" : "Shampoo 1L", "price" : 99.9, "images" : [ { "url" : ".jpg" } ] }
+> db.products.find({}).sort({ name: -1 })
+{ "_id" : ObjectId("59984287511b2809d34f4e33"), "name" : "Shampoo 1L", "price" : 99.9, "images" : [ { "url" : ".jpg" } ] }
+{ "_id" : ObjectId("59984305101dae47c8138c43"), "name" : "Perfume Carolina Herrera", "price" : 1200.5 }
+{ "_id" : ObjectId("5998430d101dae47c8138c44"), "name" : "Esmalte Juliana Paes", "price" : 3.9 }
+{ "_id" : ObjectId("599842fc101dae47c8138c42"), "name" : "Condicionador 500ml", "price" : 129.9 }
+>
+
+// Ordena e pega os dois primeiros
+> db.products.find({}).sort({ name: 1 }).limit(2)
+{ "_id" : ObjectId("599842fc101dae47c8138c42"), "name" : "Condicionador 500ml", "price" : 129.9 }
+{ "_id" : ObjectId("5998430d101dae47c8138c44"), "name" : "Esmalte Juliana Paes", "price" : 3.9 }
+
+// Ordena, pula dois valores e pega outros dois valores
+> db.products.find({}).sort({ name: 1 }).skip(2).limit(2)
+{ "_id" : ObjectId("59984305101dae47c8138c43"), "name" : "Perfume Carolina Herrera", "price" : 1200.5 }
+{ "_id" : ObjectId("59984287511b2809d34f4e33"), "name" : "Shampoo 1L", "price" : 99.9, "images" : [ { "url" : ".jpg" } ] }
+
+// faz o update
+> db.products.update({"_id" : ObjectId("5998430d101dae47c8138c44") }, { $set: { name: 'Esmalte' } })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+// Atualiza somente o primeiro registro
+> db.products.update({}, { $set: { novelty: false}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+
+// Atualiza os dados de novelty para todos os registros (multi: 1 = true)
+> db.products.update({}, { $set: { novelty: false}}, {multi: 1})
+WriteResult({ "nMatched" : 4, "nUpserted" : 0, "nModified" : 3 })
+
+// maior igual, menor igual
+> db.products.find({ price: {$gte: 100, $lte: 1000 } })
+{ "_id" : ObjectId("599842fc101dae47c8138c42"), "name" : "Condicionador 500ml", "price" : 129.9, "novelty" : false }
+
+// maior, menor
+> db.products.find({ price: {$gt: 100, $lt: 1000 } })
+{ "_id" : ObjectId("599842fc101dae47c8138c42"), "name" : "Condicionador 500ml", "price" : 129.9, "novelty" : false }
+
+
+// duplicando database na mesma máquina
+db.copyDatabase("curso-sexta", "curso-sexta-test", "127.0.0.1");

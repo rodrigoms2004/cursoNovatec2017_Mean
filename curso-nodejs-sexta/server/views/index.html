@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <link rel="stylesheet" type="text/css" href="/main.css">
+</head>
+<body>
+{% if title %}
+<h1>
+  {{ title | upper }}
+</h1>
+{% endif %}
+
+{% for i in arr %}
+  {{ i }}<br>
+{% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+www.js
+
+'use strict'
+
+const debug = require('debug')('sexta:bin:www')
+const app = require('../app');
+app.listen(3000, function() {
+  debug('app running');
+});
+
+app.js
+const debug = require('debug')('sexta:server:app');
+
+debug('app', 'outra');
+debug('app', '2222');
+
+package.json
+"scripts": {
+// mostra debugs marcados como sexta
+  "start": "export DEBUG=sexta:*&& nodemon server/bin/www.js",
+  "start-prod": "forever server/bin/www.js",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
+// mostra todos os debugs
+"start": "export DEBUG=*&& nodemon server/bin/www.js",

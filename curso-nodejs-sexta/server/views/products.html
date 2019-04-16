@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <link rel="stylesheet" type="text/css" href="/main.css">
+</head>
+<body>
+  <ul>
+    {% for item in data -%} <!-- - (menos) server para não quebrar linha -->
+    <li>{{ item.name }} </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

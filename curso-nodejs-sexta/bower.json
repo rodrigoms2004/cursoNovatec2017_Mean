@@ -1,0 +1,27 @@
+{
+  "name": "curso-nodejs-sexta",
+  "description": "",
+  "main": "server/bin/www.js",
+  "authors": [
+    "rodrigo.silveira@lyra-m2m.com.br <rodrigo.silveira@lyra-m2m.com.br>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angular-ui-router": "^1.0.6",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.6.6"
+  }
+}

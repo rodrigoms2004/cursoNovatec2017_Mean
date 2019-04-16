@@ -1,0 +1,51 @@
+<!-- /public/app/views/product.html -->
+
+<!-- EMMET -->
+
+<div class="row">
+  <div class="col-md-12">
+    <h1>Product</h1>
+
+    <p class="alert alert-{{ vm.type }}" ng-if="vm.message">
+      {{ vm.message }}
+    </p>
+    <pre>
+      {{ vm.data|json }}
+    </pre>
+
+
+    <form ng-submit="vm.save(vm.data)">
+      <fieldset>
+        <label for="name">    <!-- for selecionar o campo clicando na label -->
+          Nome:
+          <input type="text" id="name" ng-model="vm.data.name" class="form-control">
+        </label>
+        <label for="price">
+          Preço:
+          <input type="tel" id="price" ng-model="vm.data.price" class="form-control">
+        </label>
+        <label for="rating">
+          Avaliação {{ vm.data.rating }}
+          <input type="range" max="5" min="0" step="0.5"
+          id="rating" ng-model="vm.data.rating" class="form-control">
+
+          <input type="number" max="5" min="0" step="0.5"
+          id="rating" ng-model="vm.data.rating" class="form-control">
+
+        </label>
+
+        <label for="novelty">
+          Novidade
+        </label>
+        <input type="checkbox" ng-model="vm.data.novelty" id="novelty" value="true"/>
+
+        <label for="">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </label>
+      </fieldset>
+    </form>
+
+    <a ui-sref="app.dashboard">voltar &lt;-</a>
+
+  </div>
+</div>

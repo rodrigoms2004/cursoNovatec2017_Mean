@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS -Novatec</title>
+
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+<!-- styleguide - john papa -->
+
+<main class="container" ng-app="app" ng-controller="AppController" ui-view>
+  {{vm.products}}
+</main>
+
+<!-- vendors -->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+<!-- app -->
+<script src="/app/app.module.js"></script>
+<script src="/app/app.route.js"></script>
+<script src="/app/app.controller.js"></script>
+<script src="/app/dashboard.controller.js"></script>
+<script src="/app/product.edit.controller.js"></script>
+<script src="/app/product.service.js"></script>
+<script src="/app/_filter/filter.js"></script>
+<script src="/app/_directive/rating.directive.js"></script>
+<script src="/app/_component/product.table.component.js"></script>
+
+</body>
+</html>
